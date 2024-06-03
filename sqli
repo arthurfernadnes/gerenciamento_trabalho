@@ -1,0 +1,35 @@
+CREATE DATABASE managem;
+`alunos``usuarios``usuarios`
+USE gerenciamento_alunos;
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE alunos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE,
+    email VARCHAR(100) UNIQUE,
+    telefone VARCHAR(15),
+    endereco TEXT
+);
+
+CREATE TABLE cursos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    duracao INT NOT NULL
+);
+
+CREATE TABLE inscricoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    aluno_id INT,
+    curso_id INT,
+    data_inscricao DATE,
+    FOREIGN KEY (aluno_id) REFERENCES alunos(id),
+    FOREIGN KEY (curso_id) REFERENCES cursos(id)
+);
